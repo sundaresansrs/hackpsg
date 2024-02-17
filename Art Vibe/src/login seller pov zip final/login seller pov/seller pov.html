@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artisan Seller - Product Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('bg1 final 2.jpg');
+            width: 100%;
+            background-size: cover;
+            height:100%;
+        }
+
+        header {
+            background-color: #FFA500; 
+            color: #fff;
+            text-align: center;
+            padding:0.1px;
+            
+        }
+
+        main {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .product-details {
+            max-width: 400px;
+            width: 100%;
+            background-color: rgba(255, 250, 205, 0.9); 
+            border: 1px solid #ddd;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+            margin-left: auto; 
+        }
+
+        .product-details:hover {
+            transform: scale(1.05);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #FFA500; 
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #D2691E; 
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h3>ARTISAN SELLER -PRODUCT PAGE</h3>
+    </header>
+
+    <main>
+        <div class="product-details">
+            <h2 style="color: #333;">Add New Product</h2>
+             <label for="sellerName">SellerName:</label>
+            <input type="text" id="seller Name" name="sellerName" required>
+            <label for="login id">Login Id:</label>
+            <input type="text" id="loginid" name="loginid" required>
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName" name="productName" required>
+
+            <label for="productDescription">Product Description:</label>
+            <textarea id="productDescription" name="productDescription" rows="4" required></textarea>
+
+            <label for="productPrice">Product Price:</label>
+            <input type="number" id="productPrice" name="productPrice" min="0" step="0.01" required>
+
+            <label for="productImage">Product Image URL:</label>
+            <input type="text" id="productImage" name="productImage" required>
+            <label for="pickupaddress">Product pick-up Address:</label>
+            <input type="text" id="pickupaddress" name="pickupaddress" required>
+            <label for="productImage">Product pick-up date (dd/mm/yyyy):</label>
+            <input type="text" id="pickup date" name="pickup date" required>
+
+            <button type="button" onclick="addProduct()">Add Product</button>
+        </div>
+    </main>
+
+    <script>
+        function addProduct() {
+            
+            var productName = document.getElementById("productName").value;
+            var productDescription = document.getElementById("productDescription").value;
+            var productPrice = document.getElementById("productPrice").value;
+            var productImage = document.getElementById("productImage").value;
+
+            var newProduct = document.createElement("div");
+            newProduct.className = "product-details";
+
+            newProduct.innerHTML = `
+                <h2 style="color: #333;">${productName}</h2>
+                <p>${productDescription}</p>
+                <p style="color: #FFA500;">Price: $${productPrice}</p>
+                <img src="${productImage}" alt="${productName}">
+                <button style="background-color: #FFA500;">Add to Cart</button>
+            `;
+
+            
+            document.body.appendChild(newProduct);
+
+            document.getElementById("productName").value = "";
+            document.getElementById("productDescription").value = "";
+            document.getElementById("productPrice").value = "";
+            document.getElementById("productImage").value = "";
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
+

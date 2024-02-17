@@ -41,7 +41,10 @@ cartbtn.addEventListener('click',()=>{
   cartOverlay.classList.toggle('transparentBcg')
 })
 
-
+closeCartBtn.addEventListener('click',()=>{
+  cartItem.classList.toggle("showcart")
+  cartOverlay.classList.toggle('transparentBcg')
+})
 let productsArray = [];
 
 let showcaseElements = document.querySelectorAll('.product-main .showcase');
@@ -59,8 +62,6 @@ showcaseElements.forEach(showcase => {
   productsArray.push(product);
 });
 
-console.log(productsArray);
-cart=[]
 
 const showcaseActionsCart = document.querySelectorAll('.showcase-actions ion-icon[name = "bag-add-outline"]')
 console.log(showcaseActionsCart)
@@ -69,9 +70,46 @@ showcaseActionsCart.forEach((btn,index)=>{
     btn.value = index
     btn.parentNode.classList.add('addcart')
 })
-const cardOpenBtn = document.querySelectorAll('.product-main .showcase .addcart')
-cardOpenBtn.forEach((value,index)=>{
-  value.addEventListener('click',(e)=>{
 
-  })
-  })
+//creatting the cart
+cart = []
+const cardOpenBtn = document.querySelectorAll('.product-main .showcase .addcart')
+console.log(cardOpenBtn)
+cardOpenBtn.forEach((button, index) => {
+  button.addEventListener('click', () => {
+    let product = productsArray[index];
+    let cartItemHTML = `
+    <div class = cart-items> 
+      <div class="cart__item">
+        <figure>
+          <img src="${product.image}" alt="">
+          <figcaption>${product.category}</figcaption>
+        </figure>
+      </div>
+      <div class="product__info">
+        <h5>${product.price}</h5>
+        <div class="cart__buttons">
+          <button type="button">Remove</button>
+          <a href=""><button>Order</button></a>
+        </div>
+      </div>
+      <div class="cart__input__btn">
+        <p class="item__amount">0</p>
+      </div></div>`
+      document.querySelector('.cart__content').insertAdjacentHTML('beforeend',cartItemHTML)
+  });
+});
+
+
+
+const profileBtn = document.getElementById('profile')
+const profile = document.querySelector(".profile")
+console.log(profile)
+profileBtn.addEventListener('click',()=>{
+  profile.classList.toggle('sign_out');
+  profile.classList.toggle('sign_in');
+})
+
+
+
+
